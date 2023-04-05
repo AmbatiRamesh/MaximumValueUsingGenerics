@@ -1,19 +1,28 @@
 package com.bridgelabz.generics;
 
-public class MaximumValue {
-    public static  <R extends Comparable<R>>  R maximum(R  A, R B, R C) {
-        R maximumNumber = A;
-        if (A.compareTo(B) > 0 && A.compareTo(C) > 0)
-            maximumNumber = A;
-        else if (B.compareTo(A) > 0 && B.compareTo(C) > 0)
-            maximumNumber = B;
+public class MaximumValue<T> {
+    T number1;
+    T number2;
+    T number3;
+    public MaximumValue(T number1, T number2, T number3){
+        super();
+       this.number1 = number1;
+       this.number2 = number2;
+       this.number3 = number3;
+    }
+    public <T extends Comparable<T>> T maximum(T number1, T number2, T number3) {
+        T maximumNumber = number1;
+        if (number1.compareTo(number2) > 0 && number1.compareTo(number3) > 0)
+            maximumNumber = number1;
+        else if (number2.compareTo(number1) > 0 && number2.compareTo(number3) > 0)
+            maximumNumber = number2;
         else
-            maximumNumber = C;
+            maximumNumber = number3;
         return maximumNumber;
     }
     public static void main(String[] args) {
-        System.out.println(maximum(20,40,30));
-        System.out.println(maximum(20.40F,40.20F,30.30F));
-        System.out.println(maximum("Virat","Dhoni","Rohit"));
+        System.out.println(new MaximumValue<>(20,40,30).maximum(20,40,30));
+        System.out.println(new MaximumValue<>(20.40F,40.20F,60.30F).maximum(20.40F,40.20F,60.30F));
+        System.out.println(new MaximumValue<>("Virat","Dhoni","Rohit").maximum("Virat","Dhoni","Rohit"));
     }
 }
